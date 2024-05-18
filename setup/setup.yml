@@ -1,0 +1,24 @@
+# Author: Dustin Brothers
+# Description:
+#   yaml playbook to setup a RPi Macintosh Emulation system
+---
+- hosts: all
+  tasks:
+    # The Low Memory setup could still be needed...
+    - include_tasks: lowmem_setup.yml
+    - include_tasks: waveshare2p8inDPI_setup.yml
+    - include_tasks: base_setup.yml
+    - include_tasks: basiliskii_setup.yml
+    ############################################################################
+    # Setup CLI Mode (don't load the desktop)
+    - name: Set CLI mode with auto-login
+      shell:
+        cmd: systemctl set-default multi-user.target
+      become: true
+
+    ############################################################################
+    # Reboot after all setup is complete...
+    - name: Reboot to finalize installations and updates...
+      reboot:
+        msg: "Rebooting machine..."
+      become: true
