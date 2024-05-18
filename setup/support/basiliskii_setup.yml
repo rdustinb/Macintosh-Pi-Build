@@ -93,13 +93,6 @@
   blockinfile:
     path: ~/Developer/emulation/Configs/system.config
     block: |
-      rom /home/{{ ansible_ssh_user }}/Developer/emulation/ROMs/ColorClassic-1MB.rom
-      disk /home/{{ ansible_ssh_user }}/Developer/emulation/Floppys/System7_Boot.dsk
-      disk /home/{{ ansible_ssh_user }}/Developer/emulation/Floppys/System7.5.3_Install.dsk
-      disk /home/{{ ansible_ssh_user }}/Developer/emulation/Floppys/System7.5.5_Update_1.dsk
-      disk /home/{{ ansible_ssh_user }}/Developer/emulation/Floppys/System7.5.5_Update_2.dsk
-      disk /home/{{ ansible_ssh_user }}/Developer/emulation/Floppys/System7.5.5_Update_3.dsk
-      disk /home/{{ ansible_ssh_user }}/Developer/emulation/HDDs/HDD.dsk
       extfs /home/{{ ansible_ssh_user }}/Public
       screen win/640/480
       seriala /dev/cu.BLTH
