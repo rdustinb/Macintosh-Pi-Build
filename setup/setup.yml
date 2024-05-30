@@ -5,16 +5,11 @@
 - hosts: all
   tasks:
     # The Low Memory setup could still be needed...
+    - include_tasks: ./support/nodesktop_setup.yml
     - include_tasks: ./support/lowmem_setup.yml
-    - include_tasks: ./support/waveshare2p8inDPI_setup.yml
     - include_tasks: ./support/base_setup.yml
+    - include_tasks: ./support/waveshare2p8inDPI_setup.yml
     - include_tasks: ./support/basiliskii_setup.yml
-    ############################################################################
-    # Setup CLI Mode (don't load the desktop)
-    - name: Set CLI mode with auto-login
-      shell:
-        cmd: systemctl set-default multi-user.target
-      become: true
 
     ############################################################################
     # Reboot after all setup is complete...

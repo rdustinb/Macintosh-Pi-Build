@@ -104,5 +104,4 @@
 - name: Rebooting...
   become: true
   reboot:
-    msg: "Rebooting machine..."
-
+    msg: "Rebooting..."

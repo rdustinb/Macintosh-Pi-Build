@@ -1,3 +1,5 @@
+
+############################################################################
 # This is a list of tasks to configure a system with low memory. It increases the SWAP size high enough to not cause the
 # system to hang when running apt updates.
 - name: Turn off the swapspace while it is changed
@@ -18,3 +20,10 @@
   become: true
   shell:
     cmd: dphys-swapfile swapon
+
+############################################################################
+# Reboot just in case...
+- name: Rebooting...
+  reboot:
+    msg: "Rebooting..."
+  become: true

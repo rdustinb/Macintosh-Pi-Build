@@ -3,9 +3,11 @@
 #   Base tasks for setup
 - name: Normal Upgrade of packages
   apt: 
+    only_upgrade: yes
     upgrade: yes
     update_cache: yes 
   become: true
+
 ############################################################################
 # Install Common Packages I use
 - name: Install base packages
@@ -22,11 +24,13 @@
       - python3-pip
       - python3-venv
   become: true
+
 ############################################################################
 # Setup my Python Virtual Environment
 - name: Create venv
   shell:
     cmd: /usr/bin/python3 -m venv /home/{{ ansible_ssh_user }}/python_dev_env
+
 ############################################################################
 - name: Create several folders needed...
   file:
@@ -35,6 +39,7 @@
   loop:
     - ~/bin/
     - ~/.fonts/
+
 ############################################################################
 # Install custom tools
 - name: Fetch terminal tools and colors
@@ -50,6 +55,7 @@
 - name: Add my PS1 coloring script to the bashrc...
   shell:
     cmd: echo "source ~/bin/ps1_coloring" >> ~/.bashrc
+
 ############################################################################
 # Setup my VIM Environment
 - name: Fetch VIM .vimrc
@@ -133,3 +139,10 @@
   git:
     repo: https://github.com/vhda/verilog_systemverilog.vim
     dest: ~/.vim/bundle/verilog_systemverilog
+
+############################################################################
+# Reboot just in case...
+- name: Rebooting...
+  reboot:
+    msg: "Rebooting..."
+  become: true
