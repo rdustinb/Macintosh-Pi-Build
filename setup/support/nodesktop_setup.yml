@@ -4,3 +4,10 @@
   shell:
     cmd: systemctl set-default multi-user.target
   become: true
+
+############################################################################
+# Reboot to get the no-desktop environment running...
+- name: Rebooting...
+  become: true
+  reboot:
+    msg: "Rebooting..."

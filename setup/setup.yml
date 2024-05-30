@@ -1,10 +1,18 @@
 # Author: Dustin Brothers
 # Description:
 #   yaml playbook to setup a RPi Macintosh Emulation system
+#
+# Known Discrepencies:
+#   If using a Raspberry Pi Zero or Zero 2, the Desktop environment
+#   places a significant strain on the system. Thus it is necessary
+#   to first disable the desktop environment first before trying to
+#   do anything else, otherwise random failures can occur. The most
+#   notable failure I have seen is a timeout of the git cloning of
+#   the Basilisk II source tree due to the WiFi download speeds only
+#   getting up to about 150kbps.
 ---
 - hosts: all
   tasks:
-    # The Low Memory setup could still be needed...
     - include_tasks: ./support/nodesktop_setup.yml
     - include_tasks: ./support/lowmem_setup.yml
     - include_tasks: ./support/base_setup.yml
